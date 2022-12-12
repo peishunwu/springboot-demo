@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cainiao.dao.StudentDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cainiao.entity.Student">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="age" property="age" />
+        <result column="addr" property="addr" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, age, addr
+    </sql>
+    <insert id="saveList">
+        INSERT INTO student(name,age,addr)  VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+        (#{item.name},
+        #{item.age},
+        #{item.addr})
+        </foreach>
+
+    </insert>
+
+</mapper>
